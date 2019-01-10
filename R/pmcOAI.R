@@ -1,6 +1,6 @@
 # Get XML from PMC-OAI service  (Pubmed Central Open Archives Initiative)
 
-# http://www.ncbi.nlm.nih.gov/pmc/tools/oai/
+# https://www.ncbi.nlm.nih.gov/pmc/tools/oai/
 
 pmcOAI <- function(id,  ...){
   
@@ -11,11 +11,11 @@ pmcOAI <- function(id,  ...){
    id2 <- gsub("PMC", "", id)
 
    # file name for attributes
-   file  <- paste("http://www.ncbi.nlm.nih.gov/pmc/articles/", id, sep="")
+   file  <- paste("https://www.ncbi.nlm.nih.gov/pmc/articles/", id, sep="")
  
    # use getURL in RCurl package (readlines returns incomplete line warning and does not get errors (just 404 NOT found)
-  #  url <- "http://www.pubmedcentral.nih.gov/oai/oai.cgi?verb=GetRecord&metadataPrefix=pmc&identifier=oai:pubmedcentral.nih.gov:"   
-     url <- "http://www.ncbi.nlm.nih.gov/pmc/oai/oai.cgi?verb=GetRecord&metadataPrefix=pmc&identifier=oai:pubmedcentral.nih.gov:"
+  #  url <- "https://www.pubmedcentral.nih.gov/oai/oai.cgi?verb=GetRecord&metadataPrefix=pmc&identifier=oai:pubmedcentral.nih.gov:"   
+     url <- "https://www.ncbi.nlm.nih.gov/pmc/oai/oai.cgi?verb=GetRecord&metadataPrefix=pmc&identifier=oai:pubmedcentral.nih.gov:"
 
    x <- getURL( paste0(url, id2), .encoding="UTF-8", ...)
    
@@ -25,8 +25,8 @@ pmcOAI <- function(id,  ...){
       if(error=="idDoesNotExist") stop("No results found using ", id)
 
       message("No full text in Open Access Subset, downloading metadata only" )        
-    #  url <- "http://www.pubmedcentral.nih.gov/oai/oai.cgi?verb=GetRecord&metadataPrefix=pmc_fm&identifier=oai:pubmedcentral.nih.gov:"
-       url <- "http://www.ncbi.nlm.nih.gov/pmc/oai/oai.cgi?verb=GetRecord&metadataPrefix=pmc_fm&identifier=oai:pubmedcentral.nih.gov:"
+    #  url <- "https://www.pubmedcentral.nih.gov/oai/oai.cgi?verb=GetRecord&metadataPrefix=pmc_fm&identifier=oai:pubmedcentral.nih.gov:"
+       url <- "https://www.ncbi.nlm.nih.gov/pmc/oai/oai.cgi?verb=GetRecord&metadataPrefix=pmc_fm&identifier=oai:pubmedcentral.nih.gov:"
 
       x <- getURL( paste0(url, id2), .encoding="UTF-8", ...)
   
