@@ -31,6 +31,12 @@ pmcOAI <- function(id,  ...){
       x <- getURL( paste0(url, id2), .encoding="UTF-8", ...)
   
    }
+
+   doc <- processXML(x)
+   doc
+}
+
+processXML <- function(xmlFile, id=NULL, file=NULL) {
    # Remove namespace for easier XPath queries
 #   x[1] <- gsub(" xmlns=[^ ]*" , "", x[1])
 # see PMC4515827 with tab before xmlns,  \txmlns=
@@ -43,10 +49,15 @@ pmcOAI <- function(id,  ...){
    x[n] <- gsub(">([^<])</xref>", ">^\\1</xref>", x[n])
 
    doc <- xmlParse(x)  
- 
+
    ## ADD attributes  
-   attr(doc, "id") <- id
-   attr(doc, "file") <- file
+   if (id) {
+    attr(doc, "id") <- id
+   }
+
+   if (file) {
+    attr(doc, "file") <- file
+   }
+
    doc
 }
-
