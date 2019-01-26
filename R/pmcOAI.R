@@ -51,11 +51,11 @@ processXML <- function(x, id=NULL, file=NULL) {
    doc <- xmlParse(x)  
 
    ## ADD attributes  
-   if (id) {
+   if (!is.null(id)) {
     attr(doc, "id") <- id
    }
 
-   if (file) {
+   if (!is.null(file)) {
     attr(doc, "file") <- file
    }
 
