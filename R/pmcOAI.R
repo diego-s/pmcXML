@@ -36,7 +36,7 @@ pmcOAI <- function(id,  ...){
    doc
 }
 
-processXML <- function(xmlFile, id=NULL, file=NULL) {
+processXML <- function(x, id=NULL, file=NULL) {
    # Remove namespace for easier XPath queries
 #   x[1] <- gsub(" xmlns=[^ ]*" , "", x[1])
 # see PMC4515827 with tab before xmlns,  \txmlns=
